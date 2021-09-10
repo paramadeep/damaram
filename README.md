@@ -1,5 +1,5 @@
 # damaram
-Repalce Friends and message files appropriatly
+Repalce data/friends and data/message files appropriatly
 
 Works only with Mac Chrome
 
