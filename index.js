@@ -16,8 +16,8 @@ const sendMessageToFriend = async (friend) => {
   await click($('div[role="textbox"]'), near('Search or start new chat'));
   await clear();
   await write(friend.name);
-  await waitFor('CHATS');
-  await click($('div[data-testid="cell-frame-container"]', below('CHATS')));
+  await waitFor('MESSAGES');
+  await click($('div[data-testid="cell-frame-container"]', below('MESSAGES')));
   await write(`${friend.title}, ${message}`, into($('div[spellcheck="true"]', near('Type a message'))));
   await press('Enter');
 };
@@ -32,6 +32,7 @@ const sendMessageToFriends = async () => {
 openBrowser({ headless: false })
   .then(() => goto('web.whatsapp.com'))
   .then(() => reload())
+  .then(() => waitFor('Search or start new chat'))
   .then(sendMessageToFriends)
   .then(() => {
     beforeunload(() => accept());
