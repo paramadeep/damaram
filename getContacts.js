@@ -21,7 +21,7 @@ const scrapeNames = async () => {
     allNames.push(...names);
     await scrollToNext();
   }
-  return new Set([...allNames]);
+  return [...new Set(allNames)];
 };
 
 openBrowser({ headless: false })
@@ -31,5 +31,5 @@ openBrowser({ headless: false })
   .then(() => click($('[data-testid="chat"]')))
   .then(() => waitFor('New chat'))
   .then(scrapeNames)
-  .then(console.log)
+  .then((a) => console.log(JSON.stringify(a)))
   .finally(() => closeBrowser());
